@@ -21,5 +21,3 @@ class Predicator():
         
     def PredictFromBuffer(self, imageBuffer):
         return requests.post(url=self.__prepareUrlFor('image'), files={'media': imageBuffer}).json()['predictions']
-
-

@@ -1,19 +1,26 @@
 from azureAuth import auth
 
-def predictFromImage(img = None):
-    if (img is None):
+def predictFromPath(imgPath = None):
+    if (imgPath is None):
         return None
 
     _, _, prediction_client = auth()
 
-    return prediction_client.PredictFromImage(img)
+    return prediction_client.PredictFromPath(imgPath)
 
-
-
-def predictFromUrl(url = None):
-    if (url is None):
+def predictFromBuffer(imgBuffer = None):
+    if (imgBuffer is None):
         return None
 
     _, _, prediction_client = auth()
 
-    return prediction_client.PredictFromUrl(url)
+    return prediction_client.PredictFromBuffer(imgBuffer)
+
+
+def predictFromUrl(imgUrl = None):
+    if (imgUrl is None):
+        return None
+
+    _, _, prediction_client = auth()
+
+    return prediction_client.PredictFromUrl(imgUrl)

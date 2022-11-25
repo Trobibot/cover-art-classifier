@@ -4,9 +4,10 @@ import pandas as pd
 import math
 
 def upload_tags(tags, custom_vision_project, training_client):
-    for tag in tags:
-        print(f'Create tag: {tag}')
-        training_client.create_tag(custom_vision_project.id, tag)
+    for _, tag in tags.iterrows():
+        print(f'Create tag: {tag["name"]}')
+        training_client.create_tag(custom_vision_project.id, tag["name"])
+
     return
 
 def Upload_Images_to_Azure(albums, custom_vision_project, training_client):
@@ -20,7 +21,7 @@ def Upload_Images_to_Azure(albums, custom_vision_project, training_client):
 
     for batch_iter in range(batch_count):
         print(f'Batch n°{batch_iter} creation...')
-        print(f'Batch add image from index {image_count_per_batch * batch_iter} to {image_count_per_batch * batch_iter + image_count_per_batch}')
+        print(f'Batch add image from index {image_count_per_batch * batch_iter} to {image_count_per_batch * batch_iter + image_count_per_batch - 1}')
 
         image_list = []
 
@@ -35,3 +36,5 @@ def Upload_Images_to_Azure(albums, custom_vision_project, training_client):
         upload_result = training_client.create_images_from_urls(custom_vision_project.id, ImageUrlCreateBatch(images=image_list))
         if not upload_result.is_batch_successful:
             print(f'Batch n° {batch_iter} succesfully uploaded')
+    
+    return

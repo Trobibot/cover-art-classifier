@@ -28,5 +28,3 @@ def fetchMostUsedTags(amount = 50, sampleAmount = -1, doCreateCsv = False):
         tags.name.value_counts().head(amount).to_csv('sortedTags.csv')
 
     return tags.name.value_counts().head(amount)
-
-fetchMostUsedTags()

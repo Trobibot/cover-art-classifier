@@ -43,14 +43,3 @@ def fetchAlbumsByTag(tag, sampleAmount = -1):
         requestOffset += 1
 
     return albums
-
-tags = pd.read_csv('./sortedTags.csv')
-albums = fetchAlbumsByTags(tags, amountByTag=100)
-albums.to_csv('sortedAlbums.csv')
-print(len(albums), albums.cover_url.nunique())
-
-# pd.set_option('display.max_colwidth', None)
-# pd.set_option('display.max_rows', None)
-
-# albums = pd.read_csv('./sortedAlbums.csv')
-# print(albums.sort_values(by='cover_url'))
