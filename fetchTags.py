@@ -12,7 +12,6 @@ def fetchMostUsedTags(amount = 50, sampleAmount = -1, doCreateCsv = False):
 
     while requestOffset * requestAmountTag < requestMaxTag:
         print(f'[TAG FETCH] fetch offset: {requestOffset}, fetched amount {requestOffset * requestAmountTag + requestAmountTag}')
-        print(requestOffset * requestAmountTag, requestMaxTag)
         
         partialReleaseGroups = requests.get(f'https://musicbrainz.org/ws/2/release-group?query=primarytype:Album%20AND%20tag:*&offset={requestOffset}&fmt=json').json()
         

@@ -1,9 +1,19 @@
-import time
+from azureAuth import auth
 
-def predictImageGenre(img = None):
+def predictFromImage(img = None):
+    if (img is None):
+        return None
 
-    time.sleep(5)
+    _, _, prediction_client = auth()
 
-    return [{'name': 'rock', 'score': '99.3'}, {'name': 'electronic', 'score': '78.5'}, {'name': 'pop', 'score': '33.5'}]
+    return prediction_client.PredictFromImage(img)
 
-predictImageGenre()
+
+
+def predictFromUrl(url = None):
+    if (url is None):
+        return None
+
+    _, _, prediction_client = auth()
+
+    return prediction_client.PredictFromUrl(url)
